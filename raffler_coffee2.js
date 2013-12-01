@@ -4,6 +4,7 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
+
   window.Raffler = {
     Models: {},
     Collections: {},
@@ -60,8 +61,8 @@
     EntriesIndex.prototype.template = _.template($('#item-template').html());
 
     EntriesIndex.prototype.events = {
-      'click #newvalue': 'createEntry',
-      'click #choosewinner': 'drawWinner',
+      'click #newv': 'createEntry',
+      'click #draw': 'drawWinner',
       'click button': 'deleteEntry',
       'click #resetWinner': 'reset'
     };
@@ -81,7 +82,7 @@
 
     createEntry(function() {
       return this.collection.create({
-        name: $('#new-name').val()
+        name: $('#new_entry').val()
       });
     });
 
