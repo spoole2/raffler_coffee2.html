@@ -1,0 +1,49 @@
+<!-- book2.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Backbone.js Library with/Persistence</title>
+		<link rel="stylesheet" type="text/css" href="screen2.css">
+	</head>
+
+	<body>
+		<h3>The Books Application</h3>
+		<div id="books">
+			<form id="addBook" action="#">
+				<div>
+					<label for="title">Title: </label><input id="title" type="text">
+					<label for="author">Author: </lable><input id="author" type="text">
+					<label for="releaseYear">Release Year: </label><input id="releaseYear" type="text">
+					<label for="coverImage">Image: </label><input id="coverImage" type="text">
+					<button id="add">Add</button>
+				</div>
+			</form>
+			<div class="bookContainer">
+				<img src="placeholder.png">
+				<ul>
+					<li>Title</li>
+					<li>Author</li>
+					<li>Release Year</li>
+				</ul>
+				<button class="delete">Delete</button>
+			</div>
+		</div>
+		<script id="bookTemplate" type="text/template">
+			<img src="<%= coverImage %>"/>
+			<ul>
+				<li><%= title %></li>
+				<li><%= author %></li>
+				<li><%= releaseYear %></li>
+			</ul>
+			<button class="delete">Delete</button>
+		</script>
+		<script src="https://ajax.googlapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+		<script src="book2.js"></script>
+		<script src="library2.js"></script>
+		<script src="app2.js"></script>
+	</body>
+</html>

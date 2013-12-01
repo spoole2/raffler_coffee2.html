@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    /* We don't need no stinking css :) for simplicity. */
+</style>
+<script>
+    var school = { // all elipses "..." - replace w/added code - see movie
+        setup: function() { // school setup has basic db info - usually from ajax
+            r = {"students": { "s1":"John", "s2":"Bob" ,"s3":"Tom"}};
+            ...
+            this.schedule = {}; // we will create this hash below
+        },
+        add: function(c, s, t, x) { // add schedule item method 
+            ...
+        }
+    }
+    school.setup(); // initialize school object
+    school.add("c3", ["s1", "s3"], "t2", "t7pm"); // programmatically add a line of schedule
+    console.log(JSON.stringify(school.schedule, null, 4)); // the last arguments pretty-print the json
+    function addit() { // add a schedule line from the html form inputs
+        ...
+        var students = document.getElementById("students").value;
+        var astudents = students.split(', '); // creates array from csv string - problematic space
+        ...
+        console.log(JSON.stringify(school.schedule, null, 4));
+    }
+    function render() { // create menus
+        var ids=["dcourses","dstudents","dteachers"];
+        var menu=[school.courses, school.students, school.teachers];
+        for (item in menu) {
+            var y = "<ul>";
+            for(var key in menu[item]){y+="<li>"+key+"="+menu[item][key]+"</li>"};
+            y+="</ul>";
+            document.getElementById(ids[item]).innerHTML=y; // insert menu into DOM
+        }
+        display_schedule(); // insert all schedule lines into DOM
+    }
+    function display_schedule() {
+        var s = "<ul>"; // start creating html string for insertion into DOM
+        for(x in school.schedule){ // loop through courses
+            console.log(x, school.schedule[x]["students"]); // see the complex json values
+            s += "<li>"+school.courses[x]+" is taught by "+ 
+                school.teachers[school.schedule[x]["teacher"]]+
+                " at "+school.schedule[x]["time"]+
+                " for students: ";
+            for(i in school.schedule[x]["students"]){s+=school.students[school.schedule[x]["students"][i]]+", "};
+            s=s.substring(0, s.length - 2); // remove trailing comma+space
+            s+="</li>"; // finish creating html string for insertion into DOM
+            ... // insert schedule line into DOM
+        }
+    }
+</script>
+</head>
+<body onload="render()"><!--without this, the DOM not loaded before the js excutes-->
+    <h2>Scheduler</h2>
+    <h3>Courses</h3> ...
+    <h3>Students</h3> ...
+    <h3>Teachers</h3> ...
+    <h3>New Schedule Item</h3>
+    <input type="text" id="course" size="10"/>Enter course ID.<br/>
+    <input type="text" id="students" size="10"/>Enter comma separated list of student IDs.<br/>
+    <input type="text" id="teacher" size="10"/>Enter teacher ID.<br/>
+    <input type="text" id="time" size="10"/>Enter time string as day(s)time e.g. mw6pm.<br/>
+    <button onclick="addit()">Add to Schedule</button>
+    <hr width="400px" align="left"/>
+    <h3>Current Schedule</h3> ...
+</body>
+</html>
