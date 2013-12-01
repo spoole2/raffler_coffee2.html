@@ -120,6 +120,8 @@
       return _results;
     };
 
+  
+
     return EntriesIndex;
 
   })(Backbone.View);
